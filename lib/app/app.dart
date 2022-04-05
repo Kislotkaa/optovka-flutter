@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/resources/app_theme.dart';
+import 'package:autoparts/app/resources/app_theme.dart';
 
 import 'routes/app_pages.dart';
 

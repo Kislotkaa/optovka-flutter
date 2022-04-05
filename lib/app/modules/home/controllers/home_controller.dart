@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/product.dart';
-import 'package:optovka/app/modules/checkout_order/controllers/checkout_order_controller.dart';
+import 'package:autoparts/app/controllers/sqllite_controller.dart';
+import 'package:autoparts/app/model/product.dart';
+import 'package:autoparts/app/modules/checkout_order/controllers/checkout_order_controller.dart';
 
 class HomeController extends GetxController {
   HomeController({

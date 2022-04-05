@@ -1,6 +1,6 @@
 {
-    "name": "optovka",
-    "short_name": "optovka",
+    "name": "autoparts",
+    "short_name": "autoparts",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

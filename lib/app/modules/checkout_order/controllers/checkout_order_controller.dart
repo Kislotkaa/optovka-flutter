@@ -1,12 +1,12 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/client.dart';
-import 'package:optovka/app/model/product.dart';
-import 'package:optovka/app/model/product_order.dart';
-import 'package:optovka/app/routes/app_pages.dart';
-import 'package:optovka/app/utils/extends.dart';
+import 'package:autoparts/app/controllers/sqllite_controller.dart';
+import 'package:autoparts/app/model/client.dart';
+import 'package:autoparts/app/model/product.dart';
+import 'package:autoparts/app/model/product_order.dart';
+import 'package:autoparts/app/routes/app_pages.dart';
+import 'package:autoparts/app/utils/extends.dart';
 
 class CheckoutOrderController extends GetxController {
   CheckoutOrderController({required this.sqlLiteController});

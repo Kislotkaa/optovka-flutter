@@ -1,9 +1,9 @@
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
-import 'package:optovka/app/model/client.dart';
-import 'package:optovka/app/model/product.dart';
-import 'package:optovka/app/model/purchase.dart';
-import 'package:optovka/app/modules/checkout_order/controllers/checkout_order_controller.dart';
+import 'package:autoparts/app/model/client.dart';
+import 'package:autoparts/app/model/product.dart';
+import 'package:autoparts/app/model/purchase.dart';
+import 'package:autoparts/app/modules/checkout_order/controllers/checkout_order_controller.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 import 'package:path/path.dart';
@@ -20,7 +20,7 @@ class SqlLiteController extends GetxController {
 
   Future open() async {
     _uuid = const Uuid();
-    String path = join(await getDatabasesPath(), 'optovka_db.db');
+    String path = join(await getDatabasesPath(), 'autoparts_db.db');
     // await deleteDatabase(path); // use if rebuild bd
     _db = await openDatabase(
       path,

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/product_order.dart';
+import 'package:autoparts/app/controllers/sqllite_controller.dart';
+import 'package:autoparts/app/model/product_order.dart';
 
 class OrderDetailController extends GetxController {
   OrderDetailController({required this.sqlLiteController});

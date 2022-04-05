@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:optovka/app/routes/app_pages.dart';
+import 'package:autoparts/app/routes/app_pages.dart';
 
 import '../controllers/client_orders_controller.dart';
 

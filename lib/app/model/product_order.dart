@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:optovka/app/model/product.dart';
+import 'package:autoparts/app/model/product.dart';
 
 class ProductOrder {
   final Product product;

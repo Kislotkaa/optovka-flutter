@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/client.dart';
+import 'package:autoparts/app/controllers/sqllite_controller.dart';
+import 'package:autoparts/app/model/client.dart';
 
 class ProfileController extends GetxController {
   ProfileController({required this.sqlLiteController});

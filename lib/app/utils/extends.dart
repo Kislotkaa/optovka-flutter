@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/resources/app_colors.dart';
+import 'package:autoparts/app/resources/app_colors.dart';
 
 void showSnackbar(
   String text,

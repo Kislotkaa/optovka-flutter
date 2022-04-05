@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(optovka LANGUAGES CXX)
+project(autoparts LANGUAGES CXX)
 
-set(BINARY_NAME "optovka")
+set(BINARY_NAME "autoparts")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
-import 'package:optovka/app/model/product.dart';
-import 'package:optovka/app/modules/checkout_order/controllers/checkout_order_controller.dart';
-import 'package:optovka/app/resources/app_colors.dart';
-import 'package:optovka/app/routes/app_pages.dart';
+import 'package:autoparts/app/model/product.dart';
+import 'package:autoparts/app/modules/checkout_order/controllers/checkout_order_controller.dart';
+import 'package:autoparts/app/resources/app_colors.dart';
+import 'package:autoparts/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
