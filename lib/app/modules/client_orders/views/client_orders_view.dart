@@ -10,7 +10,7 @@ class ClientOrdersView extends GetView<ClientOrdersController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Заказы', style: Get.textTheme.headline2),
+        title: Text('Заказы клиента', style: Get.textTheme.headline2),
         centerTitle: true,
       ),
       body: Column(
@@ -42,30 +42,21 @@ class ClientOrdersView extends GetView<ClientOrdersController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Контактное лицо: ${(controller.client.value?.fio ?? '').toString()}',
-                                          style: Get.textTheme.caption,
-                                        ),
-                                        Text(
-                                          '${(controller.list[i]?.createAt ?? '').toString()}',
-                                          style: Get.textTheme.caption,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 8),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            Text(
+                                              '${(controller.list[i]?.createAt ?? '').toString()}',
+                                              style: Get.textTheme.caption,
+                                            ),
+                                            SizedBox(height: 8),
                                             Text(
                                               'Заказ №${i + 1} на номер ${controller.client.value?.phone ?? ''}',
                                               style: Get.textTheme.bodyText2,
                                             ),
-                                            SizedBox(width: 8),
                                           ],
                                         ),
                                         Text(

@@ -5,14 +5,12 @@ class Client {
   final String organization;
   final String address;
   final String phone;
-  final String fio;
 
   Client(
     this.id,
     this.organization,
     this.address,
     this.phone,
-    this.fio,
   );
 
   Map<String, dynamic> toMap() {
@@ -22,7 +20,6 @@ class Client {
     result.addAll({'organization': organization});
     result.addAll({'address': address});
     result.addAll({'phone': phone});
-    result.addAll({'fio': fio});
 
     return result;
   }
@@ -33,7 +30,6 @@ class Client {
       map['organization'] ?? '',
       map['address'] ?? '',
       map['phone'] ?? '',
-      map['fio'] ?? '',
     );
   }
 

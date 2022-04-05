@@ -25,8 +25,18 @@ class OrderDetailView extends GetView<OrderDetailController> {
                       ? const Center(
                           child: Text('Список продуктов пуст'),
                         )
-                      : ListView.builder(
-                          padding: EdgeInsets.all(16),
+                      : GridView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.only(
+                              bottom: 8, left: 8, right: 8, top: 16),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 6,
+                            crossAxisCount: 2,
+                            mainAxisExtent: 260,
+                          ),
                           itemCount: controller.list.length,
                           itemBuilder: ((context, i) {
                             return ProductItem(

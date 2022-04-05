@@ -44,28 +44,34 @@ class ProfileView extends GetView<ProfileController> {
                                   children: [
                                     Row(
                                       children: [
-                                        const Icon(Icons.person),
+                                        const Icon(
+                                            Icons.person_outline_outlined),
                                         const SizedBox(width: 8),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Имя: ${controller.list[i].fio}',
-                                              style: Get.textTheme.bodyText2,
-                                            ),
                                             const SizedBox(height: 4),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Организация: ${controller.list[i].organization}',
+                                                  style:
+                                                      Get.textTheme.bodyText2,
+                                                ),
+                                              ],
+                                            ),
                                             Text(
-                                              'Организация: ${controller.list[i].organization}',
+                                              'Адрес: ${controller.list[i].address}',
+                                              style: Get.textTheme.caption,
+                                            ),
+                                            Text(
+                                              'Телефон: ${controller.list[i].phone}',
                                               style: Get.textTheme.caption,
                                             ),
                                           ],
                                         ),
                                       ],
-                                    ),
-                                    Text(
-                                      '${controller.list[i].phone}',
-                                      style: Get.textTheme.caption,
                                     ),
                                   ],
                                 ),

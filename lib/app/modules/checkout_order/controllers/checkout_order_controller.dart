@@ -5,6 +5,7 @@ import 'package:optovka/app/controllers/sqllite_controller.dart';
 import 'package:optovka/app/model/client.dart';
 import 'package:optovka/app/model/product.dart';
 import 'package:optovka/app/model/product_order.dart';
+import 'package:optovka/app/routes/app_pages.dart';
 import 'package:optovka/app/utils/extends.dart';
 
 class CheckoutOrderController extends GetxController {
@@ -21,7 +22,6 @@ class CheckoutOrderController extends GetxController {
   final TextEditingController company = TextEditingController();
   final TextEditingController address = TextEditingController();
   final TextEditingController phone = TextEditingController();
-  final TextEditingController fio = TextEditingController();
 
   void removeFromBasket(dynamic item) {
     if (item != null) baskets.remove(item);
@@ -44,7 +44,6 @@ class CheckoutOrderController extends GetxController {
     company.clear();
     address.clear();
     phone.clear();
-    fio.clear();
   }
 
   void addToBasket(dynamic item) {
@@ -87,20 +86,15 @@ class CheckoutOrderController extends GetxController {
       return false;
     }
     if (company.text == '') {
-      showSnackbar(
-          'Введите названии компании', 'Название компании отсутствует');
+      showSnackbar('Введите название компании', 'Название компании не найдено');
       return false;
     }
     if (address.text == '') {
-      showSnackbar('Введите адрес ', 'Адрес отсутствует');
+      showSnackbar('Введите адрес доставки ', 'Адрес не найдено');
       return false;
     }
     if (phone.text == '') {
-      showSnackbar('Введите контакнтый телефон', 'Телефон отсутствует');
-      return false;
-    }
-    if (fio.text == '') {
-      showSnackbar('Введите ваше ФИО', 'ФИО отсутствует');
+      showSnackbar('Введите контакнтый телефон', 'Телефон не найдено');
       return false;
     }
     return true;
@@ -118,15 +112,14 @@ class CheckoutOrderController extends GetxController {
             company.text,
             address.text,
             phone.text,
-            fio.text,
           ),
         );
         clearTextField();
         clearBasket();
-        Get.back();
-        showSnackbar('Заказ успешно оформлен', 'Поздравляем!');
+        Get.offAndToNamed(Routes.PROFILE);
+        showSnackbar('Заказ оформлен', 'Ура!');
       } catch (e) {
-        showSnackbar('Произошла какая то ошибка', 'Ошибка');
+        showSnackbar('Произошла внутренняя ошибка', 'Ошибка');
       } finally {
         isLoading.value = false;
       }

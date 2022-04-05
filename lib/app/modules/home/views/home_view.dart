@@ -15,14 +15,14 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Каталог',
+          'Товары',
           style: Get.textTheme.headline2,
         ),
         centerTitle: true,
         actions: [
           GestureDetector(
               onTap: () => Get.toNamed(Routes.PROFILE),
-              child: const Icon(Icons.person_outline).paddingOnly(
+              child: const Icon(Icons.settings).paddingOnly(
                 right: 16,
               )),
         ],
@@ -32,8 +32,18 @@ class HomeView extends GetView<HomeController> {
             ? Center(child: CircularProgressIndicator())
             : Stack(
                 children: [
-                  ListView.builder(
-                    padding: const EdgeInsets.all(16),
+                  GridView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(
+                        bottom: 8, left: 8, right: 8, top: 16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 6,
+                      crossAxisCount: 2,
+                      mainAxisExtent: 260,
+                    ),
                     itemCount: controller.list.length,
                     itemBuilder: (context, i) {
                       return Obx(
@@ -51,35 +61,37 @@ class HomeView extends GetView<HomeController> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Obx(
-                      () =>
-                          controller.checkoutOrderController.baskets.length != 0
-                              ? SizedBox(
-                                  height: 45,
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    style: Get.theme.elevatedButtonTheme.style,
-                                    onPressed: () =>
-                                        Get.toNamed(Routes.CHECKOUT_ORDER),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Перейти в корзину',
-                                          style: Get.textTheme.bodyText2,
-                                        ),
-                                        Text(
-                                          controller.checkoutOrderController
-                                                  .getPrice
-                                                  .toString() +
-                                              ' руб',
-                                          style: Get.textTheme.bodyText2,
-                                        ),
-                                      ],
-                                    ),
+                      () => controller.checkoutOrderController.baskets.length !=
+                              0
+                          ? SafeArea(
+                              child: SizedBox(
+                                height: 45,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  style: Get.theme.elevatedButtonTheme.style,
+                                  onPressed: () =>
+                                      Get.toNamed(Routes.CHECKOUT_ORDER),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Перейти в корзину',
+                                        style: Get.textTheme.bodyText2,
+                                      ),
+                                      Text(
+                                        controller.checkoutOrderController
+                                                .getPrice
+                                                .toString() +
+                                            ' руб',
+                                        style: Get.textTheme.bodyText2,
+                                      ),
+                                    ],
                                   ),
-                                ).paddingSymmetric(horizontal: 16, vertical: 16)
-                              : const SizedBox(),
+                                ),
+                              ).paddingSymmetric(horizontal: 16, vertical: 16),
+                            )
+                          : const SizedBox(),
                     ),
                   ),
                 ],
@@ -106,18 +118,26 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
+      decoration: BoxDecoration(
+        color: Get.theme.cardColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      margin: const EdgeInsets.only(right: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: SizedBox(
-                  height: 75,
-                  width: 120,
+                  height: quintity != null && isDetail == false ? 100 : 150,
+                  width: quintity != null && isDetail == false
+                      ? 140
+                      : double.infinity,
                   child: Image.asset(
                     item?.url ?? '',
                     fit: BoxFit.cover,
@@ -131,55 +151,42 @@ class ProductItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(item?.name ?? ''),
+                  Text('Артикул: ${item?.articul.toString()}'),
                   Text('${item?.price.toString()} рублей'),
                   SizedBox(height: 4),
-                  quintity != null
-                      ? Text(quintity.toString() + (item?.countStr ?? ''))
-                      : SizedBox(),
                 ],
-              )
+              ).paddingAll(6)
             ],
           ),
-          Row(
-            children: [
-              quintity != null && isDetail == false
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () =>
-                                  CheckoutOrderController.to.addToBasket(item),
-                              child: Icon(Icons.add),
-                            ),
-                            SizedBox(width: Get.width * 0.1),
-                            GestureDetector(
-                              onTap: () => CheckoutOrderController.to
-                                  .minusProductFrombasket(item),
-                              child: Icon(Icons.remove),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  : SizedBox(),
-              isBasket
-                  ? Container(
-                      height: 35,
-                      width: 35,
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: AppColors.primaryConst, width: 2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: FittedBox(
-                        child: const Icon(Icons.check).paddingAll(4),
-                      ),
-                    )
-                  : const SizedBox(),
-            ],
-          ),
+          isBasket
+              ? Text(
+                  'В корзине',
+                  style: Get.textTheme.bodyText2!.copyWith(color: Colors.green),
+                ).paddingOnly(bottom: 8)
+              : const SizedBox(),
+          quintity != null && isDetail == false
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () => CheckoutOrderController.to.addToBasket(item),
+                      child: Icon(Icons.add),
+                    ),
+                    SizedBox(width: 12),
+                    Container(
+                      child: quintity != null
+                          ? Text(quintity.toString() + (item?.countStr ?? ''))
+                          : SizedBox(),
+                    ),
+                    SizedBox(width: 12),
+                    GestureDetector(
+                      onTap: () => CheckoutOrderController.to
+                          .minusProductFrombasket(item),
+                      child: Icon(Icons.remove),
+                    ),
+                  ],
+                ).paddingOnly(bottom: 12)
+              : SizedBox(),
         ],
       ),
     );

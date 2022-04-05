@@ -5,8 +5,8 @@ class AppColors {
   static const Color highlightConst = Color(0xff687CAE);
   static const Color errorConst = Color(0xffF38181);
   static const Color greyConst = Color(0xffA3A3A3);
-  static const Color primaryConst = Color.fromRGBO(161, 202, 255, 1);
-  static const Color primaryAccentConst = Color.fromARGB(255, 187, 216, 255);
+  static const Color primaryConst = Color.fromARGB(255, 255, 255, 255);
+  static const Color primaryAccentConst = Color.fromARGB(255, 222, 222, 222);
 
   static const Color whiteConst = Color(0xffFFFFFF);
   static const Color greenConst = Color.fromARGB(255, 66, 199, 84);

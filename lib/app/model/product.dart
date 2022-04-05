@@ -4,6 +4,7 @@ class Product {
   final String id;
   final String url;
   final String name;
+  final String articul;
   final String description;
   final String countStr;
   final double price;
@@ -12,6 +13,7 @@ class Product {
     this.id,
     this.url,
     this.name,
+    this.articul,
     this.description,
     this.countStr,
     this.price,
@@ -23,6 +25,7 @@ class Product {
     result.addAll({'id': id});
     result.addAll({'url': url});
     result.addAll({'name': name});
+    result.addAll({'articul': articul});
     result.addAll({'description': description});
     result.addAll({'countStr': countStr});
     result.addAll({'price': price});
@@ -35,6 +38,7 @@ class Product {
       map['id'] ?? '',
       map['url'] ?? '',
       map['name'] ?? '',
+      map['articul'] ?? '',
       map['description'] ?? '',
       map['countStr'] ?? '',
       map['price']?.toDouble() ?? 0.0,
