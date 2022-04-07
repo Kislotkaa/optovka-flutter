@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:optovka/app/resources/app_colors.dart';
-import 'package:optovka/app/widgets/base_title.dart';
+import 'package:facult/app/resources/app_colors.dart';
+import 'package:facult/app/widgets/base_title.dart';
 
 import '../controllers/detail_facult_controller.dart';
 

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/facult.dart';
+import 'package:facult/app/controllers/sqllite_controller.dart';
+import 'package:facult/app/model/facult.dart';
 
 class HomeController extends GetxController {
   HomeController({

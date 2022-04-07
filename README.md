@@ -1,4 +1,4 @@
-# optovka
+# facult
 
 A new Flutter project.
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/model/client.dart';
-import 'package:optovka/app/routes/app_pages.dart';
-import 'package:optovka/app/utils/extends.dart';
+import 'package:facult/app/controllers/sqllite_controller.dart';
+import 'package:facult/app/model/client.dart';
+import 'package:facult/app/routes/app_pages.dart';
+import 'package:facult/app/utils/extends.dart';
 import 'package:uuid/uuid.dart';
 
 class NewStudentController extends GetxController {

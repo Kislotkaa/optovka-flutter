@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(optovka LANGUAGES CXX)
+project(facult LANGUAGES CXX)
 
-set(BINARY_NAME "optovka")
+set(BINARY_NAME "facult")
 
 cmake_policy(SET CMP0063 NEW)
 

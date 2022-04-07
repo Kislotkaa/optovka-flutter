@@ -1,4 +1,4 @@
-package com.example.optovka
+package com.example.facult
 
 import io.flutter.embedding.android.FlutterActivity
 

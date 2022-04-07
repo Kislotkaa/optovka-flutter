@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
+import 'package:facult/app/controllers/sqllite_controller.dart';
 
 Future<void> initAppModule() async {
   SystemChrome.setPreferredOrientations([

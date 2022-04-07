@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/model/facult.dart';
-import 'package:optovka/app/routes/app_pages.dart';
-import 'package:optovka/app/widgets/facult_item.dart';
+import 'package:facult/app/model/facult.dart';
+import 'package:facult/app/routes/app_pages.dart';
+import 'package:facult/app/widgets/facult_item.dart';
 
 import '../../../widgets/base_title.dart';
 import '../controllers/home_controller.dart';

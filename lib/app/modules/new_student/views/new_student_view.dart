@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:optovka/app/widgets/base_title.dart';
+import 'package:facult/app/widgets/base_title.dart';
 
 import '../controllers/new_student_controller.dart';
 

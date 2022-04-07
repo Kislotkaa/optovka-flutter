@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:optovka/app/resources/app_theme.dart';
+import 'package:facult/app/resources/app_theme.dart';
 
 import 'routes/app_pages.dart';
 
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Запчасти",
+      title: "ЮГУ",
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
-import 'package:optovka/app/controllers/sqllite_controller.dart';
+import 'package:facult/app/controllers/sqllite_controller.dart';
 
 import '../../../model/client.dart';
 
