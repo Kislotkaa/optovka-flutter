@@ -1,41 +1,39 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
-import '../model/product.dart';
+import '../model/facult.dart';
 
 Future<void> dbInit(Database db) async {
   final uuid = Uuid();
   await db.execute(
-      '''CREATE TABLE user(id TEXT PRIMARY KEY, organization TEXT, address TEXT, phone TEXT,fio TEXT);''');
+      '''CREATE TABLE user(id TEXT PRIMARY KEY, address TEXT, phone TEXT,name TEXT,lastName TEXT, firstName TEXT);''');
   await db.execute(
-      '''CREATE TABLE product(id TEXT PRIMARY KEY,url TEXT,articul TEXT,name TEXT, description TEXT,countStr TEXT, price REAL);''');
+      '''CREATE TABLE facult(id TEXT PRIMARY KEY,name TEXT, description TEXT,lekci TEXT, practic TEXT,laboratory TEXT);''');
   await db.execute(
-      '''CREATE TABLE purchase(id TEXT PRIMARY KEY,clientId TEXT ,totalPrice NUMERIC, createAt TEXT, CONSTRAINT purchase_client_fk FOREIGN KEY (clientId) REFERENCES user (id));''');
-  await db.execute(
-      '''CREATE TABLE purchase_product(id TEXT PRIMARY KEY,productId TEXT,purchaseId TEXT ,quantity INT,CONSTRAINT product_fk FOREIGN KEY (productId) REFERENCES product (id),CONSTRAINT purchase_fk FOREIGN KEY (purchaseId) REFERENCES purchase (id));''');
+      '''CREATE TABLE user_facult(id TEXT PRIMARY KEY,userId TEXT, facultId TEXT ,grade INT,CONSTRAINT user_fk FOREIGN KEY (userId) REFERENCES user (id),CONSTRAINT facult_fk FOREIGN KEY (facultId) REFERENCES facult (id));''');
 
   db.insert(
-    'product',
-    Product(uuid.v4(), 'assets/images/tomatoes.jpeg', 'Корпус машины', 'TSE23',
-            'Синий УАЗ', 'шт', 42000.0)
+    'facult',
+    Facult(uuid.v4(), 'Высшая математика', 'Высшая математика для 3-4 курсов',
+            '6', '16', '10')
         .toMap(),
   );
   db.insert(
-    'product',
-    Product(uuid.v4(), 'assets/images/potato.jpeg', 'Колёса', 'DVW-6',
-            'Диаметр 90см, ширина 45см', 'шт', 8000.0)
+    'facult',
+    Facult(uuid.v4(), 'Экономическая безопасность',
+            'Экономическая безопасность для 1-2 курсов', '3', '12', '15')
         .toMap(),
   );
   db.insert(
-    'product',
-    Product(uuid.v4(), 'assets/images/сucumber.jpeg', 'Амортизаторы', 'AMT-92',
-            'Гидравлические. Ход 20см', 'шт', 12000.0)
+    'facult',
+    Facult(uuid.v4(), 'Иностранный язык', 'Иностранный язык для 1-3 курсов',
+            '9', '22', '17')
         .toMap(),
   );
   db.insert(
-    'product',
-    Product(uuid.v4(), 'assets/images/onion.jpeg', 'Подшибники', 'PDSH-2',
-            'Диаметр 16мм, толщина 23мм', 'шт', 120.0)
+    'facult',
+    Facult(uuid.v4(), 'Схемотехника', 'Схемотехника для 1-4 курсов', '8', '19',
+            '14')
         .toMap(),
   );
 }

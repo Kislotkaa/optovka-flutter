@@ -4,17 +4,21 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const PROFILE = _Paths.PROFILE;
-  static const CHECKOUT_ORDER = _Paths.CHECKOUT_ORDER;
-  static const CLIENT_ORDERS = _Paths.CLIENT_ORDERS;
-  static const ORDER_DETAIL = _Paths.ORDER_DETAIL;
+  static const STUDENTS = _Paths.STUDENTS;
+  static const DETAIL_STUDENT = _Paths.DETAIL_STUDENT;
+  static const NEW_STUDENT = _Paths.NEW_STUDENT;
+  static const DETAIL_FACULT = _Paths.DETAIL_FACULT;
+  static const ADD_STUDENT_FACULT = _Paths.ADD_STUDENT_FACULT;
+  static const ADD_GRADE_STUDENT = _Paths.ADD_GRADE_STUDENT;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
-  static const PROFILE = '/profile';
-  static const CHECKOUT_ORDER = '/checkout-order';
-  static const CLIENT_ORDERS = '/client-orders';
-  static const ORDER_DETAIL = '/order-detail';
+  static const STUDENTS = '/students';
+  static const DETAIL_STUDENT = '/detail-student';
+  static const NEW_STUDENT = '/new-student';
+  static const DETAIL_FACULT = '/detail-facult';
+  static const ADD_STUDENT_FACULT = '/add-student-facult';
+  static const ADD_GRADE_STUDENT = '/add-grade-student';
 }

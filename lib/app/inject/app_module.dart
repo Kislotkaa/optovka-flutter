@@ -2,7 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:optovka/app/controllers/sqllite_controller.dart';
-import 'package:optovka/app/modules/checkout_order/controllers/checkout_order_controller.dart';
 
 Future<void> initAppModule() async {
   SystemChrome.setPreferredOrientations([
@@ -15,7 +14,7 @@ Future<void> initAppModule() async {
 }
 
 Future<void> _initController() async {
-  Get.put(CheckoutOrderController(sqlLiteController: Get.find()));
+  // Get.put(CheckoutOrderController(sqlLiteController: Get.find()));
 }
 
 Future<void> _initApi() async {

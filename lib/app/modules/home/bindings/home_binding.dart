@@ -8,7 +8,6 @@ class HomeBinding extends Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(
         sqlController: Get.find(),
-        checkoutOrderController: Get.find(),
       ),
     );
   }

@@ -1,17 +1,21 @@
 import 'package:get/get.dart';
 
-import '../modules/checkout_order/bindings/checkout_order_binding.dart';
-import '../modules/checkout_order/views/checkout_order_view.dart';
-import '../modules/client_orders/bindings/client_orders_binding.dart';
-import '../modules/client_orders/views/client_orders_view.dart';
+import '../modules/add_grade_student/bindings/add_grade_student_binding.dart';
+import '../modules/add_grade_student/views/add_grade_student_view.dart';
+import '../modules/add_student_facult/bindings/add_student_facult_binding.dart';
+import '../modules/add_student_facult/views/add_student_facult_view.dart';
+import '../modules/detail_facult/bindings/detail_facult_binding.dart';
+import '../modules/detail_facult/views/detail_facult_view.dart';
+import '../modules/detail_student/bindings/detail_student_binding.dart';
+import '../modules/detail_student/views/detail_student_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/order_detail/bindings/order_detail_binding.dart';
-import '../modules/order_detail/views/order_detail_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
+import '../modules/new_student/bindings/new_student_binding.dart';
+import '../modules/new_student/views/new_student_view.dart';
+import '../modules/students/bindings/students_binding.dart';
+import '../modules/students/views/students_view.dart';
 
 part 'app_routes.dart';
 
@@ -34,24 +38,34 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => ProfileView(),
-      binding: ProfileBinding(),
+      name: _Paths.STUDENTS,
+      page: () => StudentsView(),
+      binding: StudentsBinding(),
     ),
     GetPage(
-      name: _Paths.CHECKOUT_ORDER,
-      page: () => CheckoutOrderView(),
-      binding: CheckoutOrderBinding(),
+      name: _Paths.DETAIL_STUDENT,
+      page: () => DetailStudentView(),
+      binding: DetailStudentBinding(),
     ),
     GetPage(
-      name: _Paths.CLIENT_ORDERS,
-      page: () => ClientOrdersView(),
-      binding: ClientOrdersBinding(),
+      name: _Paths.NEW_STUDENT,
+      page: () => NewStudentView(),
+      binding: NewStudentBinding(),
     ),
     GetPage(
-      name: _Paths.ORDER_DETAIL,
-      page: () => OrderDetailView(),
-      binding: OrderDetailBinding(),
+      name: _Paths.DETAIL_FACULT,
+      page: () => DetailFacultView(),
+      binding: DetailFacultBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_STUDENT_FACULT,
+      page: () => AddStudentFacultView(),
+      binding: AddStudentFacultBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_GRADE_STUDENT,
+      page: () => AddGradeStudentView(),
+      binding: AddGradeStudentBinding(),
     ),
   ];
 }

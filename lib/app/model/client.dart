@@ -1,25 +1,31 @@
 import 'dart:convert';
 
 class Client {
-  late String id;
-  final String organization;
+  final String id;
   final String address;
   final String phone;
+  final String name;
+  final String firstName;
+  final String lastName;
 
   Client(
     this.id,
-    this.organization,
     this.address,
     this.phone,
+    this.name,
+    this.firstName,
+    this.lastName,
   );
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
     result.addAll({'id': id});
-    result.addAll({'organization': organization});
     result.addAll({'address': address});
     result.addAll({'phone': phone});
+    result.addAll({'name': name});
+    result.addAll({'firstName': firstName});
+    result.addAll({'lastName': lastName});
 
     return result;
   }
@@ -27,9 +33,11 @@ class Client {
   factory Client.fromMap(Map<String, dynamic> map) {
     return Client(
       map['id'] ?? '',
-      map['organization'] ?? '',
       map['address'] ?? '',
       map['phone'] ?? '',
+      map['name'] ?? '',
+      map['firstName'] ?? '',
+      map['lastName'] ?? '',
     );
   }
 

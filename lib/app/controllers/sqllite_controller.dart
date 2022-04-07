@@ -1,15 +1,16 @@
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:optovka/app/model/client.dart';
-import 'package:optovka/app/model/product.dart';
+import 'package:optovka/app/model/client_facult.dart';
+import 'package:optovka/app/model/facult.dart';
 import 'package:optovka/app/model/purchase.dart';
-import 'package:optovka/app/modules/checkout_order/controllers/checkout_order_controller.dart';
+import 'package:optovka/app/utils/extends.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 import 'package:path/path.dart';
 import 'package:dartx/dartx.dart';
 
-import '../model/product_order.dart';
+import '../model/user_facult.dart';
 import '../model/purchase_product.dart';
 import 'db_init.dart';
 
@@ -37,16 +38,16 @@ class SqlLiteController extends GetxController {
     super.onInit();
   }
 
-  Future<List<Product?>> getProducts() async {
-    final result = await _db.query('product');
-    final List<Product> returnData = [];
+  Future<List<Facult?>> getProducts() async {
+    final result = await _db.query('facult');
+    final List<Facult> returnData = [];
     result.forEach((element) {
-      returnData.add(Product.fromMap(element));
+      returnData.add(Facult.fromMap(element));
     });
     return returnData;
   }
 
-  Future<List<ProductOrder?>> getPurchaseProducts(String id) async {
+  Future<List<UserFacult?>> getPurchaseProducts(String id) async {
     final result = await _db.query(
       'purchase_product',
       where: '"purchaseId" = ?',
@@ -60,13 +61,57 @@ class SqlLiteController extends GetxController {
       quantityProducts.add((element['quantity'].toString()).toInt());
     });
 
-    final List<ProductOrder> returnData = [];
+    final List<UserFacult> returnData = [];
     for (var i = 0; i < idProducts.length; i++) {
       var product = await getProductByPk(idProducts[i]);
-      returnData.add(ProductOrder(product!, quantityProducts[i]));
+      returnData.add(UserFacult(product!, quantityProducts[i]));
     }
 
     return returnData;
+  }
+
+  Future<bool> createUser(Client client) async {
+    var clients = await getUsers();
+    var isStudent = false;
+
+    clients.forEach((element) {
+      if (element.firstName == client.firstName) {
+        isStudent = true;
+      }
+    });
+    if (!isStudent) {
+      await _db.insert(
+        'user',
+        client.toMap(),
+      );
+      return false;
+    } else
+      return true;
+  }
+
+  Future<void> addStudentFacult(Client student, Facult facult) async {
+    var uuid = Uuid();
+    var clients = await getUsersFacult(facult.id);
+    var isStudent = false;
+    clients.forEach((element) {
+      if (element.client.firstName == student.firstName) {
+        isStudent = true;
+        return;
+      }
+    });
+    if (!isStudent) {
+      await _db.insert(
+        'user_facult',
+        {
+          'id': uuid.v4(),
+          'userId': student.id,
+          'facultId': facult.id,
+          'grade': 0,
+        },
+      );
+    } else {
+      showSnackbar('Такой студент уже есть на факультативе', 'Сообщаю!');
+    }
   }
 
   Future<List<Client>> getUsers() async {
@@ -75,6 +120,71 @@ class SqlLiteController extends GetxController {
     result.forEach((element) {
       returnData.add(Client.fromMap(element));
     });
+    return returnData;
+  }
+
+  Future<void> addGradeStudent(
+    int gradeCount,
+    String facultId,
+    String studentId,
+  ) async {
+    String id = await getUserThisFacult(studentId);
+
+    _db.update(
+      'user_facult',
+      {
+        'id': id,
+        'userId': studentId,
+        'facultId': facultId,
+        'grade': gradeCount,
+      },
+      where: '"id" = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<String> getUserThisFacult(String studentId) async {
+    final result = await _db.query(
+      'user_facult',
+      where: '"userId" = ?',
+      whereArgs: [studentId],
+    );
+    var returnData = '';
+    result.forEach((element) {
+      returnData = element['id'].toString();
+      return;
+    });
+    return returnData;
+  }
+
+  Future<List<ClientFacult>> getUsersFacult(String id) async {
+    final result = await _db.query(
+      'user_facult',
+      where: '"facultId" = ?',
+      whereArgs: [id],
+    );
+    final List<String> idStudent = [];
+    final List<String> gradeStudent = [];
+
+    result.forEach((element) {
+      idStudent.add(element['userId'].toString());
+      gradeStudent.add(element['grade'].toString());
+    });
+
+    final List<ClientFacult> returnData = [];
+
+    for (var i = 0; i < idStudent.length; i++) {
+      var student = await getUserByPk(idStudent[i]);
+      if (student != null) {
+        returnData.add(
+          ClientFacult(
+            student,
+            gradeStudent[i].toInt(),
+          ),
+        );
+      }
+    }
+
     return returnData;
   }
 
@@ -87,12 +197,12 @@ class SqlLiteController extends GetxController {
     return returnData.firstOrNull;
   }
 
-  Future<Product?> getProductByPk(String id) async {
+  Future<Facult?> getProductByPk(String id) async {
     final result =
-        await _db.query('product', where: '"id" = ?', whereArgs: [id]);
-    final List<Product> returnData = [];
+        await _db.query('facult', where: '"id" = ?', whereArgs: [id]);
+    final List<Facult> returnData = [];
     result.forEach((element) {
-      returnData.add(Product.fromMap(element));
+      returnData.add(Facult.fromMap(element));
     });
     return returnData.firstOrNull;
   }
@@ -106,49 +216,6 @@ class SqlLiteController extends GetxController {
     });
     print(returnData);
     return returnData;
-  }
-
-  Future<void> createOrder(
-      List<ProductOrder> listProduct, Client client) async {
-    var clientId = _uuid.v4();
-    var purchaseId = _uuid.v4();
-    var sum = 0.0;
-    listProduct.forEach((element) {
-      sum += element.product.price * element.quantity;
-    });
-    var clients = await getUsers();
-    clients.forEach((element) {
-      if (element.organization == client.organization) client = element;
-    });
-    if (client.id == '') {
-      client.id = clientId;
-      await _db.insert(
-        'user',
-        client.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    }
-
-    await _db.insert(
-      'purchase',
-      Purchase(
-        purchaseId,
-        client.id,
-        sum,
-        getDefaultTimeFormat(DateTime.now()),
-      ).toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-    listProduct.forEach((element) async {
-      await _db.insert(
-        'purchase_product',
-        PurchaseProduct(
-                _uuid.v4(), element.product.id, purchaseId, element.quantity)
-            .toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    });
-    print(purchaseId);
   }
 
   static String getDefaultTimeFormat(DateTime dateTime) {
