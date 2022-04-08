@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:facult/app/widgets/base_title.dart';
@@ -25,6 +26,9 @@ class NewStudentView extends GetView<NewStudentController> {
             SizedBox(height: 6),
             TextFormField(
               controller: controller.firstName,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Zdasа-яА-Я]')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Фамилия',
               ),
@@ -32,6 +36,9 @@ class NewStudentView extends GetView<NewStudentController> {
             SizedBox(height: 6),
             TextFormField(
               controller: controller.name,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Zdasа-яА-Я]')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Имя',
               ),
@@ -39,6 +46,9 @@ class NewStudentView extends GetView<NewStudentController> {
             SizedBox(height: 6),
             TextFormField(
               controller: controller.lastName,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Zdasа-яА-Я]')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Отчество',
               ),
@@ -53,6 +63,9 @@ class NewStudentView extends GetView<NewStudentController> {
             SizedBox(height: 6),
             TextFormField(
               controller: controller.phone,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+              ],
               decoration: InputDecoration(
                 labelText: 'Телефон',
               ),

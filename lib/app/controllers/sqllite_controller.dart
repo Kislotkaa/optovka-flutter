@@ -197,6 +197,10 @@ class SqlLiteController extends GetxController {
     return returnData.firstOrNull;
   }
 
+  Future<void> delUser(String id) async {
+    await _db.delete('user', where: '"id" = ?', whereArgs: [id]);
+  }
+
   Future<Facult?> getProductByPk(String id) async {
     final result =
         await _db.query('facult', where: '"id" = ?', whereArgs: [id]);

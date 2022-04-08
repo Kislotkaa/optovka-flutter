@@ -3,6 +3,8 @@ import 'package:facult/app/controllers/sqllite_controller.dart';
 import 'package:facult/app/model/client.dart';
 import 'package:facult/app/routes/app_pages.dart';
 
+import '../../../utils/extends.dart';
+
 class StudentsController extends GetxController {
   StudentsController({required this.sqlLiteController});
 
@@ -24,5 +26,21 @@ class StudentsController extends GetxController {
     await Get.toNamed(Routes.NEW_STUDENT)?.then((value) async {
       await updateStudent();
     });
+  }
+
+  Future<void> delUser(String id) async {
+    await showDefaultDialog(
+      cancelAction: () {
+        Get.back();
+      },
+      cancelText: 'Отмена',
+      confirmAction: () {
+        Get.back();
+        sqlLiteController.delUser(id);
+      },
+      confirmText: 'Уверен',
+      middleText: 'Вы уверены что хотите поставить оценку студенту?',
+      title: 'Поставить оценку',
+    ).then((value) => updateStudent());
   }
 }
