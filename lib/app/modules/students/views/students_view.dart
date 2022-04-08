@@ -53,7 +53,7 @@ class StudentsView extends GetView<StudentsController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'ФИО: ${controller.list[i].firstName} ${controller.list[i].name} ${controller.list[i].lastName}',
+                                'ФИО: ${controller.list[i].lastName} ${controller.list[i].name} ${controller.list[i].firstName}',
                                 style: Get.textTheme.bodyText2,
                               ),
                               SizedBox(height: 6),

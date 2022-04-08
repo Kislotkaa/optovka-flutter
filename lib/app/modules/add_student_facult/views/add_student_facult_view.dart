@@ -42,7 +42,7 @@ class AddStudentFacultView extends GetView<AddStudentFacultController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'ФИО: ${controller.list[i].firstName} ${controller.list[i].name} ${controller.list[i].lastName}',
+                                'ФИО: ${controller.list[i].lastName} ${controller.list[i].name} ${controller.list[i].firstName}',
                                 style: Get.textTheme.bodyText2,
                               ),
                               SizedBox(height: 6),
@@ -51,9 +51,14 @@ class AddStudentFacultView extends GetView<AddStudentFacultController> {
                                 style: Get.textTheme.caption,
                               ),
                               SizedBox(height: 2),
-                              Text(
-                                'Адрес: ${controller.list[i].address}',
-                                style: Get.textTheme.caption,
+                              Container(
+                                width: Get.width * 0.8,
+                                child: Text(
+                                  'Адрес: ${controller.list[i].address}',
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Get.textTheme.caption,
+                                ),
                               )
                             ],
                           ),

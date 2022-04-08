@@ -53,9 +53,14 @@ class DetailFacultView extends GetView<DetailFacultController> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'ФИО: ${controller.list[i].client.firstName} ${controller.list[i].client.name} ${controller.list[i].client.lastName}',
-                                    style: Get.textTheme.bodyText2,
+                                  Container(
+                                    width: Get.width * 0.5,
+                                    child: Text(
+                                      'ФИО: ${controller.list[i].client.lastName} ${controller.list[i].client.name} ${controller.list[i].client.firstName}',
+                                      style: Get.textTheme.bodyText2,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                   SizedBox(height: 6),
                                   Text(
@@ -63,9 +68,14 @@ class DetailFacultView extends GetView<DetailFacultController> {
                                     style: Get.textTheme.caption,
                                   ),
                                   SizedBox(height: 2),
-                                  Text(
-                                    'Адрес: ${controller.list[i].client.address}',
-                                    style: Get.textTheme.caption,
+                                  Container(
+                                    width: Get.width * 0.5,
+                                    child: Text(
+                                      'Адрес: ${controller.list[i].client.address}',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Get.textTheme.caption,
+                                    ),
                                   )
                                 ],
                               ),

@@ -39,8 +39,8 @@ class StudentsController extends GetxController {
         sqlLiteController.delUser(id);
       },
       confirmText: 'Уверен',
-      middleText: 'Вы уверены что хотите поставить оценку студенту?',
-      title: 'Поставить оценку',
+      middleText: 'Вы уверены что хотите удалить студента?',
+      title: 'Удаление студента',
     ).then((value) => updateStudent());
   }
 }
