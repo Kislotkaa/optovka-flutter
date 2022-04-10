@@ -12,6 +12,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/new_facult/bindings/new_facult_binding.dart';
+import '../modules/new_facult/views/new_facult_view.dart';
 import '../modules/new_student/bindings/new_student_binding.dart';
 import '../modules/new_student/views/new_student_view.dart';
 import '../modules/students/bindings/students_binding.dart';
@@ -66,6 +68,11 @@ class AppPages {
       name: _Paths.ADD_GRADE_STUDENT,
       page: () => AddGradeStudentView(),
       binding: AddGradeStudentBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEW_FACULT,
+      page: () => NewFacultView(),
+      binding: NewFacultBinding(),
     ),
   ];
 }

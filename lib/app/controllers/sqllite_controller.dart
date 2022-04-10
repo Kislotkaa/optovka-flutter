@@ -47,6 +47,21 @@ class SqlLiteController extends GetxController {
     return returnData;
   }
 
+  Future<void> addFacult(name, description, lecti, practic, lab) async {
+    var uuid = Uuid();
+    await _db.insert(
+      'facult',
+      Facult(
+        uuid.v4(),
+        name,
+        description,
+        lecti,
+        practic,
+        lab,
+      ).toMap(),
+    );
+  }
+
   Future<List<UserFacult?>> getPurchaseProducts(String id) async {
     final result = await _db.query(
       'purchase_product',
@@ -199,6 +214,10 @@ class SqlLiteController extends GetxController {
 
   Future<void> delUser(String id) async {
     await _db.delete('user', where: '"id" = ?', whereArgs: [id]);
+  }
+
+  Future<void> delfacult(String id) async {
+    await _db.delete('facult', where: '"id" = ?', whereArgs: [id]);
   }
 
   Future<Facult?> getProductByPk(String id) async {

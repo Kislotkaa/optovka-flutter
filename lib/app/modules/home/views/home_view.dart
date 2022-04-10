@@ -1,3 +1,4 @@
+import 'package:facult/app/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:facult/app/model/facult.dart';
@@ -11,6 +12,11 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryConst,
+        onPressed: () async => await controller.newFacult(),
+        child: Icon(Icons.add, color: Colors.black),
+      ),
       appBar: AppBar(
         title: BaseTitle('Факультативы'),
         centerTitle: false,
@@ -44,6 +50,8 @@ class HomeView extends GetView<HomeController> {
                     itemBuilder: (context, i) {
                       return Obx(
                         () => GestureDetector(
+                          onLongPress: () =>
+                              controller.delFacult(controller.list[i]!.id),
                           onTap: () => Get.toNamed(
                             Routes.DETAIL_FACULT,
                             arguments: controller.list[i],

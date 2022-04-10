@@ -10,6 +10,7 @@ abstract class Routes {
   static const DETAIL_FACULT = _Paths.DETAIL_FACULT;
   static const ADD_STUDENT_FACULT = _Paths.ADD_STUDENT_FACULT;
   static const ADD_GRADE_STUDENT = _Paths.ADD_GRADE_STUDENT;
+  static const NEW_FACULT = _Paths.NEW_FACULT;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const DETAIL_FACULT = '/detail-facult';
   static const ADD_STUDENT_FACULT = '/add-student-facult';
   static const ADD_GRADE_STUDENT = '/add-grade-student';
+  static const NEW_FACULT = '/new-facult';
 }
