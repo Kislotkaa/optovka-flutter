@@ -46,15 +46,14 @@ class HomeController extends GetxController {
         Get.back();
       },
       cancelText: 'Отмена',
-      confirmAction: () {
+      confirmAction: () async {
         Get.back();
         sqlController.delfacult(id);
+        await getFaluct();
       },
       confirmText: 'Уверен',
       middleText: 'Вы уверены что хотите удалить факультет?',
       title: 'Удаление факультета',
-    ).then((value) async {
-      await getFaluct();
-    });
+    );
   }
 }
