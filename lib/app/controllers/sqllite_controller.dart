@@ -212,6 +212,10 @@ class SqlLiteController extends GetxController {
     return returnData.firstOrNull;
   }
 
+  Future<void> updateUser(Client client) async {
+    final result = await _db.update('user', client.toMap());
+  }
+
   Future<void> delUser(String id) async {
     await _db.delete('user', where: '"id" = ?', whereArgs: [id]);
   }

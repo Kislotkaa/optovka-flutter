@@ -2,11 +2,11 @@ import 'dart:convert';
 
 class Client {
   final String id;
-  final String address;
-  final String phone;
-  final String name;
-  final String firstName;
-  final String lastName;
+  late final String address;
+  late final String phone;
+  late final String name;
+  late final String firstName;
+  late final String lastName;
 
   Client(
     this.id,

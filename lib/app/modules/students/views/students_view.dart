@@ -37,6 +37,8 @@ class StudentsView extends GetView<StudentsController> {
                   return GestureDetector(
                     onLongPress: () =>
                         controller.delUser(controller.list[i].id),
+                    onTap: () async =>
+                        await controller.detailStudent(controller.list[i].id),
                     child: Container(
                       color: Colors.transparent,
                       child: Row(

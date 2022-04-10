@@ -6,7 +6,7 @@ class DetailStudentBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DetailStudentController>(
-      () => DetailStudentController(),
+      () => DetailStudentController(sqlLiteController: Get.find()),
     );
   }
 }

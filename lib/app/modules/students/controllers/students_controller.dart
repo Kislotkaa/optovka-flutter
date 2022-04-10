@@ -43,4 +43,11 @@ class StudentsController extends GetxController {
       title: 'Удаление студента',
     ).then((value) => updateStudent());
   }
+
+  Future<void> detailStudent(String id) async {
+    await Get.toNamed(Routes.DETAIL_STUDENT, arguments: id)
+        ?.then((value) async {
+      await updateStudent();
+    });
+  }
 }
